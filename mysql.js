@@ -37,30 +37,3 @@ const connection = mysql.createConnection({
   });
   
   
-  // function getdata(callback) {
-  //   if (!callback) {
-  //     throw new Error('callback is required');
-  //   }
-    
-  //   if (!connection) {
-  //     callback(new Error('connection is not available'), null);
-  //     return;
-  //   }
-      
-  //   connection.query('SELECT * FROM work_unit', (error, results, fields) => {
-  //     if (error) {
-  //       callback(error, null);
-  //       return;
-  //     }
-      
-  //     console.log(results);
-  //     callback(null, results);
-  //   });
-  // }
-  
-  // module.exports = {
-  //   getdata: getdata
-  // };
-  
-
-

@@ -42,6 +42,25 @@
         <div class="bottom">하단 영역</div>
       </div>
       
+      <button id="btn">조회</button>
+      <div id="result"></div>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+        $(document).ready(() => {
+          $('#btn').click(() => {
+            $.ajax({
+              type: 'GET',
+              url: '/button',
+              success: (data) => {
+                $('#result').html(data);
+              },
+              error: (xhr, status, error) => {
+                console.error(error);
+              }
+            });
+          });
+        });
+      </script>
 
 </body>
 
