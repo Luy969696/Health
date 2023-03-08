@@ -41,7 +41,17 @@ app.get('/button', function(req, res) {
   });
 });
 
+app.get('/WorkList', function(req, res) {
+  console.log("1");
+  const id= req.query.id;
+  console.log(req.query);
+  connection.query(`SELECT * FROM Work where work_unit_cd ='${id}';`, function(error, results, fields) {
+  if (error) throw error;
 
+    // 쿼리 결과를 JSON 형식으로 보내기
+    res.json(results);
+  });
+});
 
 
 

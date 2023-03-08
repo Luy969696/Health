@@ -1,3 +1,9 @@
+<!-- 0308 좌측 테이블 데이터 선택시 우측 테이블 데이터 조회를 해서 리스트를 뿌려줘야한다.
+현재 데이터 뿌려주는것 까지 성공했으나. 컬럼 높이 조절이 필요한 상황이며 
+가로로 1테이블 2테이블 붙여서 표시를 해야한다. -->
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +21,6 @@
   <div class="container">
     <div class="top">
       <span class="WorkUnit">
-
         <table class="styled-table">
           <thead>
             <tr>
@@ -26,11 +31,22 @@
           <tbody id="WorkUnit" class="scrollable"> 
           </tbody>
         </table>
+
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th class="code"> 운동코드</th>
+              <th> 운동</th>
+            </tr>
+          </thead>
+          <tbody id="work" class="scrollable"> 
+          </tbody>
+        </table>
       </span>
 
-      <span class="WorkContent">
+      <!-- <span class="WorkContent">
 
-      </span>
+      </span> -->
     </div>
 
     <div class="bottom">하단 영역</div>
@@ -42,35 +58,76 @@
 <script src="/action.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  $(document).ready(() => {
-      $.ajax({
-        type: 'GET',
-        url: '/button',
-        success: (data) => {
-          const val = JSON.stringify(data);
-          const valObject = JSON.parse(val);
-          let test=  "";
+ $(document).ready(() => {
+  $.ajax({
+    type: 'GET',
+    url: '/button',
+    success: (data) => {
+      const val = JSON.stringify(data);
+      const valObject = JSON.parse(val);
+      let test = "";
 
-          valObject.forEach(element => {
-            // const idx =element.idx;
-            const work_unit_cd = element.work_unit_cd;
-            const work_unit_nm = element.work_unit_nm;
+      valObject.forEach(element => {
+        const work_unit_cd = element.work_unit_cd;
+        const work_unit_nm = element.work_unit_nm;
 
-                
-            test+="<tr>"
-            // test+=`<td> ${idx} </td>`
-            test+=`<td class="code"> ${work_unit_cd} </td>`
-            test+=`<td> ${work_unit_nm} </td>`
-            
-            test+="</tr>"
-          });
-          $('#WorkUnit').html(test);
-        },
-        error: (xhr, status, error) => {
-          console.error(error);
-        }
+        test += "<tr>"
+        test += `<td class="code"> ${work_unit_cd} </td>`
+        test += `<td data-code="${work_unit_cd}"> ${work_unit_nm} </td>`
+        test += "</tr>"
       });
+      $('#WorkUnit').html(test);
+
+      
+
+
+
+      $('td').click(function() {
+        console.log($(this) + "/");
+        const id = $(this).data('code');
+        $.ajax({
+          type: "GET",
+          url: "/WorkList",
+          data: { id: id },
+          success: function(data) {
+            const Val = JSON.stringify(data);
+            const valObject = JSON.parse(Val);
+            let test = "";
+
+            valObject.forEach(elemet=>{
+              const work_cd = elemet.work_cd;
+              const work_nm = elemet.work_nm;
+              test +="<tr>";
+              test +=`<td class="code"> ${work_cd} </td>`
+              test +=`<td> ${work_nm} </td>`
+              test +="</tr>";
+            });
+            console.log(test);
+
+            $('#work').html(test);
+            
+
+            // console.log(valObject);
+          },
+          error: function(xhr, status, error) {
+            console.error(error);
+          }
+        });
+      });
+    },
+    error: (xhr, status, error) => {
+      console.error(error);
+    }
   });
+});
+
+  
+
+  // $('td').click(function() {
+  // const id = $(this).data('id');
+
+
+
 </script>
 
 
