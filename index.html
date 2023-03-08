@@ -1,71 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css.css">
-    
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css.css">
+
 </head>
+
 <body>
-    
-    <div class="container">
-        <div class="top">
-            <span class="WorkUnit">
-                
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th class="code"> 운동단위코드</th>
-                            <th> 운동단위</th>
-                        </tr>
-                    </thead>
-                    <tbody class="scrollable">
-                        <tr>
-                            <td class="code">가슴코드</td>
-                            <td>가슴운동</td>
-                        </tr>
-                        <tr>
-                            <td class="code">등코드</td>
-                            <td>등운동</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </span>
-            
-            <span class="WorkContent">
-            
-            </span>
-        </div>
-        
-        <div class="bottom">하단 영역</div>
-      </div>
-      
-      <button id="btn">조회</button>
-      <div id="result"></div>
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script>
-        $(document).ready(() => {
-          $('#btn').click(() => {
-            $.ajax({
-              type: 'GET',
-              url: '/button',
-              success: (data) => {
-                $('#result').html(data);
-              },
-              error: (xhr, status, error) => {
-                console.error(error);
-              }
-            });
-          });
-        });
-      </script>
+
+  <div class="container">
+    <div class="top">
+      <span class="WorkUnit">
+
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th class="code"> 운동단위코드</th>
+              <th> 운동단위</th>
+            </tr>
+          </thead>
+          <tbody id="WorkUnit" class="scrollable"> 
+          </tbody>
+        </table>
+      </span>
+
+      <span class="WorkContent">
+
+      </span>
+    </div>
+
+    <div class="bottom">하단 영역</div>
+  </div>
+
+  
 
 </body>
-
-
 <script src="/action.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(() => {
+      $.ajax({
+        type: 'GET',
+        url: '/button',
+        success: (data) => {
+          const val = JSON.stringify(data);
+          const valObject = JSON.parse(val);
+          let test=  "";
+
+          valObject.forEach(element => {
+            // const idx =element.idx;
+            const work_unit_cd = element.work_unit_cd;
+            const work_unit_nm = element.work_unit_nm;
+
+                
+            test+="<tr>"
+            // test+=`<td> ${idx} </td>`
+            test+=`<td class="code"> ${work_unit_cd} </td>`
+            test+=`<td> ${work_unit_nm} </td>`
+            
+            test+="</tr>"
+          });
+          $('#WorkUnit').html(test);
+        },
+        error: (xhr, status, error) => {
+          console.error(error);
+        }
+      });
+  });
+</script>
 
 
 </html>
