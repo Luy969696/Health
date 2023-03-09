@@ -44,14 +44,44 @@
         </table>
       </span>
 
-      <!-- <span class="WorkContent">
+      <span class="WorkContent">
+        <form>
+          <label class="test" for="option1">Option 1
+            <input class="test" type="radio" name="group1" id="option1" checked>
+          </label>
 
-      </span> -->
+          
+        </form>
+        
+      </span>
+
+      
     </div>
 
     <div class="bottom">하단 영역</div>
   </div>
-
+  <div class="radio-wrapper">
+    <label>
+      Radio 1
+      <input type="radio" name="radio-group">
+    </label>
+    
+    <label>
+      Radio 2
+      <input type="radio" name="radio-group">
+    </label>
+    
+    <label>
+      Radio 3
+      <input type="radio" name="radio-group">
+    </label>
+    
+    <label>
+      Radio 4
+      <input type="radio" name="radio-group">
+    </label>
+  </div>
+  
   
 
 </body>
@@ -78,10 +108,6 @@
       });
       $('#WorkUnit').html(test);
 
-      
-
-
-
       $('td').click(function() {
         console.log($(this) + "/");
         const id = $(this).data('code');
@@ -103,11 +129,7 @@
               test +="</tr>";
             });
             console.log(test);
-
             $('#work').html(test);
-            
-
-            // console.log(valObject);
           },
           error: function(xhr, status, error) {
             console.error(error);
@@ -120,13 +142,6 @@
     }
   });
 });
-
-  
-
-  // $('td').click(function() {
-  // const id = $(this).data('id');
-
-
 
 </script>
 

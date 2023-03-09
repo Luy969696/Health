@@ -94,43 +94,50 @@ td {
     height: 50%;
 }
 
-
-.top .WorkUnit {
+.top  {
     display: inline-block;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* background-color: red; */
+}
+
+.WorkUnit, .WorkContent {
+    display: inline-block;
+    vertical-align: top;
     margin: auto;
     width: 20vw;
     height: 30vw;
     background-color: white;
 }
-.top .WorkUnit table{
-    display: inline-block;
-    margin: auto;
-    width: 30vw;
-    height: 30vw;
+.WorkContent{
+  background-color: white;
 }
 
-.top .WorkContent {
-    display: inline-block;
-    margin: auto;
-    width: 50vw;
-    height: 30vw;;
-    background-color: wheat;
+.test{
+  display: flex;
+  flex-wrap: wrap; 
+
 }
+
+.test label{
+  display: flex;
+  flex-direction: column;
+
+} 
+.test input[type="checkbox"] {
+ align-self: center;
+} 
+
+
 
 .bottom {
     width: 100vw;
     height: 50%;
-    background-color: green;
+    background-color: darkcyan;
 }
 
 
-.top span {
-    display: inline-block;
-    max-width: 100%;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-}
 
 
 
@@ -141,10 +148,12 @@ td {
 .styled-table {
     border-collapse: collapse;
     margin: 25px 0;
+    width : 10vw;
+    height: 30vw;
     font-size: 0.9em;
     font-family: sans-serif;
-    min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    display: inline-block;
   }
   
   .styled-table thead tr {
@@ -183,3 +192,21 @@ td {
 .code{
   display: none;
 }
+
+
+
+/* .radio-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.radio-wrapper label {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 10%;
+  text-align: center;
+}
+
+.radio-wrapper input[type="radio"] {
+  align-self: center;
+} */
