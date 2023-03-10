@@ -1,8 +1,7 @@
-<!-- 0308 좌측 테이블 데이터 선택시 우측 테이블 데이터 조회를 해서 리스트를 뿌려줘야한다.
-현재 데이터 뿌려주는것 까지 성공했으나. 컬럼 높이 조절이 필요한 상황이며 
-가로로 1테이블 2테이블 붙여서 표시를 해야한다. -->
-
-
+<!-- 1.라디오 박스 클릭시 무게가 대입되어야한다
+2.무게를 게이지바로 선택 가능 하도록 해야한다
+3.그후 횟수도 입력 가능 하도록 해야한다
+4.저장버튼을 누르면 초기화가 되야하며. 하단리스트에 표시한다. -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,12 +44,23 @@
       </span>
 
       <span class="WorkContent">
-        <form>
-          <label class="test" for="option1">Option 1
-            <input class="test" type="radio" name="group1" id="option1" checked>
-          </label>
+        
+        <div class="WeightContainer">
+          <h3 class="title">무게 : </h3>
+          <h3 id="value">5kg </h3>
+        </div>
 
-          
+        <form class="WeightItem">
+          <label for="option1">5kg
+            <input type="radio" name="group1" id="option1" onclick="Weight_Check()"  value="5kg" checked>
+          </label>
+          <label for="option2">10kg
+            <input type="radio" name="group1" id="option2" onclick="Weight_Check()" value="10kg">
+          </label>
+          <label for="option3">15kg
+            <input type="radio" name="group1" id="option3" onclick="Weight_Check()"  value="15kg">
+          </label>
+  
         </form>
         
       </span>
@@ -59,28 +69,6 @@
     </div>
 
     <div class="bottom">하단 영역</div>
-  </div>
-  <div class="radio-wrapper">
-    <label>
-      Radio 1
-      <input type="radio" name="radio-group">
-    </label>
-    
-    <label>
-      Radio 2
-      <input type="radio" name="radio-group">
-    </label>
-    
-    <label>
-      Radio 3
-      <input type="radio" name="radio-group">
-    </label>
-    
-    <label>
-      Radio 4
-      <input type="radio" name="radio-group">
-    </label>
-  </div>
   
   
 
@@ -137,6 +125,9 @@
         });
       });
     },
+    
+
+
     error: (xhr, status, error) => {
       console.error(error);
     }
